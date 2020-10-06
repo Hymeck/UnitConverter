@@ -31,18 +31,6 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-        Button someButton = findViewById(R.id.someButton);
-        someButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Log.i("My app", "this is a message log");
-                Toast.makeText(getApplicationContext(), "Message", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //
 //        fab.setOnClickListener(new View.OnClickListener()

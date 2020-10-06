@@ -20,7 +20,7 @@ import by.hymeck.unitconverter.R;
 public class PlaceholderFragment extends Fragment
 {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String ArgSectionNumber = "section_number";
 
     private PageViewModel pageViewModel;
 
@@ -28,7 +28,7 @@ public class PlaceholderFragment extends Fragment
     {
         PlaceholderFragment fragment = new PlaceholderFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
+        bundle.putInt(ArgSectionNumber, index);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -40,7 +40,7 @@ public class PlaceholderFragment extends Fragment
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
         int index = 1;
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
+            index = getArguments().getInt(ArgSectionNumber);
         }
         pageViewModel.setIndex(index);
     }
