@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import by.hymeck.unitconverter.R;
+import by.hymeck.unitconverter.fragments.DistanceFragment;
 import by.hymeck.unitconverter.fragments.MassFragment;
+import by.hymeck.unitconverter.fragments.TimeFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -34,18 +36,23 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         Fragment fragment = null;
-        if (position == 0)
-            fragment = new MassFragment();
-        else
-            fragment = PlaceholderFragment.newInstance(position + 1);
-//        switch (position)
-//        {
-//            case 0:
-//                fragment = new MassFragment();
-//                //TODO: add other tabs
-//        }
+
+        switch (position)
+        {
+            case 0:
+                fragment = MassFragment.newInstance();
+                break;
+            case 1:
+                fragment = DistanceFragment.newInstance();
+                break;
+            case 2:
+                fragment = TimeFragment.newInstance();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + position);
+        }
+
         return fragment;
-//        return PlaceholderFragment.newInstance(position + 1);
     }
 
     @Nullable

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TimeFragment">
+
+    <include
+        android:id="@+id/entryTime"
+        layout="@layout/entries"/>
+
+    <include
+        android:id="@+id/spinnersTime"
+        layout="@layout/spinners"/>
+
+    <include
+        android:id="@+id/numpadTime"
+        layout="@layout/numpad"/>
+
+</TableLayout>
