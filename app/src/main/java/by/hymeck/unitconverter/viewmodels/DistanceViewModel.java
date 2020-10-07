@@ -10,23 +10,17 @@ import by.hymeck.unitconverter.logic.domain.distance.units.*;
 
 public class DistanceViewModel extends ViewModel
 {
-    // TODO: Implement the ViewModel
-    private static final String emptyField = "0";
+    private static final String emptyField = "";
 
     private final MutableLiveData<String> from = new MutableLiveData<>(emptyField);
     private final MutableLiveData<String> to = new MutableLiveData<>(emptyField);
 
     private final DistanceConverter distanceConverter = new DistanceConverter();
 
-    private MutableLiveData<DistanceUnits> fromUnit;
-    private MutableLiveData<DistanceUnits> toUnit;
+    private MutableLiveData<DistanceUnits> fromUnit = new MutableLiveData<>(DistanceUnits.Centimeter);
+    private MutableLiveData<DistanceUnits> toUnit = new MutableLiveData<>(DistanceUnits.Centimeter);
 
-
-    public void input(String digit)
-    {
-        from.setValue(from.getValue() + digit);
-        convert();
-    }
+    public void input(String digit) { from.setValue(from.getValue() + digit); }
 
     public LiveData<String> getFrom()
     {
@@ -48,7 +42,6 @@ public class DistanceViewModel extends ViewModel
 
             else
                 from.setValue(value + ".");
-            // TODO: convert?
         }
     }
 
@@ -58,10 +51,7 @@ public class DistanceViewModel extends ViewModel
         int length = value.length();
 
         if (length > 1)
-        {
             from.setValue(value.substring(0, length - 1));
-            convert();
-        }
 
         else
             clear();
@@ -75,7 +65,10 @@ public class DistanceViewModel extends ViewModel
 
     public void convert()
     {
-        double value = Double.parseDouble(to.getValue());
+        if(from.getValue().equals(emptyField))
+            return;
+
+        double value = Double.parseDouble(from.getValue());
         DistanceMetricUnit fromUnit = getDistanceMetricUnit(this.fromUnit.getValue());
         Distance from = new Distance(fromUnit, value);
 
@@ -92,6 +85,9 @@ public class DistanceViewModel extends ViewModel
             return;
 
         fromUnit.postValue(u);
+
+        if (from.getValue().equals(emptyField))
+            return;
 
         DistanceMetricUnit distanceMetricUnit = getDistanceMetricUnit(u);
         double value = Double.parseDouble(from.getValue());
@@ -110,11 +106,12 @@ public class DistanceViewModel extends ViewModel
 
         toUnit.postValue(u);
 
+        if (from.getValue().equals(emptyField))
+            return;
+
         double fromValue = Double.parseDouble(from.getValue());
         DistanceMetricUnit distanceMetricUnit = getDistanceMetricUnit(fromUnit.getValue());
         Distance from = new Distance(distanceMetricUnit, fromValue);
-
-        double value = Double.parseDouble(to.getValue());
 
         DistanceMetricUnit convertedUnit = getDistanceMetricUnit(u);
         Distance to = distanceConverter.Convert(from, convertedUnit);
@@ -128,16 +125,18 @@ public class DistanceViewModel extends ViewModel
 
         switch (distanceUnits)
         {
-
             case Centimeter:
                 distanceMetricUnit = new CentimeterUnit();
                 break;
+
             case Meter:
                 distanceMetricUnit = new MeterUnit();
                 break;
+
             case Kilometer:
                 distanceMetricUnit = new KilometerUnit();
                 break;
+
             default:
                 throw new IllegalStateException("Unexpected value: " + distanceUnits);
         }

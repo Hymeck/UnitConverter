@@ -1,14 +1,10 @@
 package by.hymeck.unitconverter.fragments;
 
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import by.hymeck.unitconverter.R;
 import by.hymeck.unitconverter.viewmodels.MassViewModel;
@@ -69,12 +64,6 @@ public class MassFragment extends Fragment implements AdapterView.OnItemSelected
         view.findViewById(R.id.buttonErase).setOnClickListener(item -> mViewModel.erase());
         view.findViewById(R.id.buttonClear).setOnClickListener(item -> mViewModel.clear());
 
-
-//        EditText textFrom = view.findViewById(R.id.textFrom);
-//        EditText textTo = view.findViewById(R.id.textTo);
-//        mViewModel.getFrom().observe(requireActivity(), textFrom::setText);
-//        mViewModel.getTo().observe(requireActivity(), textTo::setText);
-
         return view;
     }
 
@@ -92,17 +81,14 @@ public class MassFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        Spinner spin = (Spinner)parent;
-        Spinner spin2 = (Spinner)parent;
+        Spinner spinner = (Spinner)parent;
         String choice = parent.getItemAtPosition(position).toString();
-        if(spin.getId() == R.id.spinnerFrom)
-        {
+
+        if(spinner.getId() == R.id.spinnerFrom)
             mViewModel.setFromUnit(choice);
-        }
-        else if(spin2.getId() == R.id.spinnerTo)
-        {
+
+        else if(spinner.getId() == R.id.spinnerTo)
             mViewModel.setToUnit(choice);
-        }
     }
 
     @Override

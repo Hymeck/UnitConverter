@@ -4,18 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import by.hymeck.unitconverter.logic.domain.mass.Mass;
-import by.hymeck.unitconverter.logic.domain.mass.MassConverter;
-import by.hymeck.unitconverter.logic.domain.mass.MassMetricUnit;
-import by.hymeck.unitconverter.logic.domain.mass.MassUnits;
-import by.hymeck.unitconverter.logic.domain.mass.units.GramUnit;
-import by.hymeck.unitconverter.logic.domain.mass.units.KilogramUnit;
-import by.hymeck.unitconverter.logic.domain.mass.units.ToneUnit;
+import by.hymeck.unitconverter.logic.domain.mass.*;
+import by.hymeck.unitconverter.logic.domain.mass.units.*;
 
 
 public class MassViewModel extends ViewModel
 {
-    // TODO: Implement the ViewModel
     private static final String emptyField = "";
 
     private final MutableLiveData<String> from = new MutableLiveData<>(emptyField);
@@ -26,17 +20,9 @@ public class MassViewModel extends ViewModel
     private MutableLiveData<MassUnits> fromUnit = new MutableLiveData<>(MassUnits.Gram);
     private MutableLiveData<MassUnits> toUnit = new MutableLiveData<>(MassUnits.Gram);
 
+    public void input(String digit) { from.setValue(from.getValue() + digit); }
 
-    public void input(String digit)
-    {
-        from.setValue(from.getValue() + digit);
-//        convert();
-    }
-
-    public LiveData<String> getFrom()
-    {
-        return from;
-    }
+    public LiveData<String> getFrom() { return from; }
 
     public LiveData<String> getTo()
     {
@@ -53,7 +39,6 @@ public class MassViewModel extends ViewModel
 
             else
                 from.setValue(value + ".");
-            // TODO: convert?
         }
     }
 
@@ -63,10 +48,7 @@ public class MassViewModel extends ViewModel
         int length = value.length();
 
         if (length > 1)
-        {
             from.setValue(value.substring(0, length - 1));
-//            convert();
-        }
 
         else
             clear();
@@ -82,6 +64,7 @@ public class MassViewModel extends ViewModel
     {
         if(from.getValue().equals(emptyField))
             return;
+
         double value = Double.parseDouble(from.getValue());
         MassMetricUnit fromUnit = getMassMetricUnit(this.fromUnit.getValue());
         Mass from = new Mass(fromUnit, value);
@@ -127,8 +110,6 @@ public class MassViewModel extends ViewModel
         MassMetricUnit fromMassMetricUnit = getMassMetricUnit(fromUnit.getValue());
         Mass from = new Mass(fromMassMetricUnit, fromValue);
 
-        double value = Double.parseDouble(to.getValue());
-
         MassMetricUnit convertedUnit = getMassMetricUnit(u);
         Mass to = massConverter.Convert(from, convertedUnit);
 
@@ -138,6 +119,7 @@ public class MassViewModel extends ViewModel
     private MassMetricUnit getMassMetricUnit(MassUnits massUnits)
     {
         MassMetricUnit massMetricUnit;
+
         switch (massUnits)
         {
             case Gram:

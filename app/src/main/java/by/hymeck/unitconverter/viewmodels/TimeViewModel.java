@@ -10,23 +10,18 @@ import by.hymeck.unitconverter.logic.domain.time.units.*;
 
 public class TimeViewModel extends ViewModel
 {
-    // TODO: Implement the ViewModel
-    private static final String emptyField = "0";
+    private static final String emptyField = "";
 
     private final MutableLiveData<String> from = new MutableLiveData<>(emptyField);
     private final MutableLiveData<String> to = new MutableLiveData<>(emptyField);
 
     private final TimeConverter timeConverter = new TimeConverter();
 
-    private MutableLiveData<TimeUnits> fromUnit;
-    private MutableLiveData<TimeUnits> toUnit;
+    private MutableLiveData<TimeUnits> fromUnit = new MutableLiveData<>(TimeUnits.Second);
+    private MutableLiveData<TimeUnits> toUnit = new MutableLiveData<>(TimeUnits.Second);
 
 
-    public void input(String digit)
-    {
-        from.setValue(from.getValue() + digit);
-        convert();
-    }
+    public void input(String digit) { from.setValue(from.getValue() + digit); }
 
     public LiveData<String> getFrom()
     {
@@ -48,7 +43,6 @@ public class TimeViewModel extends ViewModel
 
             else
                 from.setValue(value + ".");
-            // TODO: convert?
         }
     }
 
@@ -58,10 +52,7 @@ public class TimeViewModel extends ViewModel
         int length = value.length();
 
         if (length > 1)
-        {
             from.setValue(value.substring(0, length - 1));
-            convert();
-        }
 
         else
             clear();
@@ -75,14 +66,18 @@ public class TimeViewModel extends ViewModel
 
     public void convert()
     {
-        double value = Double.parseDouble(to.getValue());
+        if(from.getValue().equals(emptyField))
+            return;
+
+        double value = Double.parseDouble(from.getValue());
         TimeMetricUnit fromUnit = getTimeMetricUnit(this.fromUnit.getValue());
         Time from = new Time(fromUnit, value);
 
         TimeMetricUnit toUnit = getTimeMetricUnit(this.toUnit.getValue());
         Time to = timeConverter.Convert(from, toUnit);
 
-        this.to.postValue(Double.toString(to.value));
+        String convertedValue = String.format("%.5f", to.value);
+        this.to.postValue(convertedValue);
     }
 
     public void setFromUnit(String unit)
@@ -93,13 +88,18 @@ public class TimeViewModel extends ViewModel
 
         fromUnit.postValue(u);
 
+        if (from.getValue().equals(emptyField))
+            return;
+
         TimeMetricUnit timeMetricUnit = getTimeMetricUnit(u);
         double value = Double.parseDouble(from.getValue());
         Time from = new Time(timeMetricUnit, value);
 
         timeMetricUnit = getTimeMetricUnit(toUnit.getValue());
         Time to = timeConverter.Convert(from, timeMetricUnit);
-        this.to.setValue(Double.toString(to.value));
+
+        String convertedValue = String.format("%.5f", to.value);
+        this.to.postValue(convertedValue);
     }
 
     public void setToUnit(String unit)
@@ -110,16 +110,18 @@ public class TimeViewModel extends ViewModel
 
         toUnit.postValue(u);
 
+        if (from.getValue().equals(emptyField))
+            return;
+
         double fromValue = Double.parseDouble(from.getValue());
         TimeMetricUnit distanceMetricUnit = getTimeMetricUnit(fromUnit.getValue());
         Time from = new Time(distanceMetricUnit, fromValue);
 
-        double value = Double.parseDouble(to.getValue());
-
         TimeMetricUnit convertedUnit = getTimeMetricUnit(u);
         Time to = timeConverter.Convert(from, convertedUnit);
 
-        this.to.setValue(Double.toString(to.value));
+        String convertedValue = String.format("%.5f", to.value);
+        this.to.postValue(convertedValue);
     }
 
     private TimeMetricUnit getTimeMetricUnit(TimeUnits timeUnits)
@@ -128,7 +130,6 @@ public class TimeViewModel extends ViewModel
 
         switch (timeUnits)
         {
-
             case Second:
                 timeMetricUnit = new SecondUnit();
                 break;
