@@ -1,4 +1,4 @@
-package by.hymeck.unitconverter;
+package by.hymeck.unitconverter.activities;
 
 import android.os.Bundle;
 
@@ -17,12 +17,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import by.hymeck.unitconverter.R;
 import by.hymeck.unitconverter.ui.main.SectionsPagerAdapter;
 import by.hymeck.unitconverter.viewmodels.MassViewModel;
 
 public class MainActivity extends AppCompatActivity
 {
-    private MassViewModel massViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,20 +34,5 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-//        massViewModel = ViewModelProviders.of(this).get(MassViewModel.class);
-//        massViewModel
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//
-//        fab.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
-    // onStart()
 }

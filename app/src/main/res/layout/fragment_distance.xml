@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -7,16 +8,34 @@
     android:layout_height="match_parent"
     tools:context=".fragments.DistanceFragment">
 
-    <include
+    <fragment
         android:id="@+id/entryDistance"
-        layout="@layout/entries"/>
+        android:name="by.hymeck.unitconverter.fragments.EntriesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/entries" />
 
     <include
         android:id="@+id/spinnersDistance"
-        layout="@layout/spinners"/>
+        layout="@layout/spinners"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entryDistance"/>
 
-    <include
+    <fragment
         android:id="@+id/numpadDistance"
-        layout="@layout/numpad"/>
+        android:name="by.hymeck.unitconverter.fragments.NumpadFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp"
+        tools:layout="@layout/numpad" />
 
-</TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
