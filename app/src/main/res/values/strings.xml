@@ -21,6 +21,7 @@
     <string name="unitFrom">Value</string>
     <string name="unitTo">Converted value</string>
     <string name="buttonPeriod">.</string>
+    <string name="textButtonSwap"><![CDATA[<-->]]></string>
 
     <string-array name="variantsMass">
         <item>Gram</item>
