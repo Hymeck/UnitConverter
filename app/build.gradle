@@ -1,3 +1,7 @@
+plugins {
+    id 'de.nanogiants.android-versioning' version '2.4.0'
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -8,8 +12,8 @@ android {
         applicationId "by.hymeck.unitconverter"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode versioning.getVersionCode()
+        versionName versioning.getVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

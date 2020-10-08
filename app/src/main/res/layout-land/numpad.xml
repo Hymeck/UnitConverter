@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center"
+    android:columnCount="8"
+    android:rowCount="2"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp"
+    tools:context=".fragments.NumpadFragment">
+
+    <Button
+        android:id="@+id/button0"
+        android:text="@string/button0"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:text="@string/button1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:text="@string/button2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:text="@string/button3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:text="@string/button4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:text="@string/button5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:text="@string/button6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button7"
+        android:text="@string/button7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button8"
+        android:text="@string/button8"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/button9"
+        android:text="@string/button9"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_columnSpan="2"/>
+
+    <Button
+        android:id="@+id/buttonErase"
+        android:text="@string/buttonBackspace"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:text="@string/buttonCancel"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/buttonPeriod"
+        android:text="@string/buttonPeriod"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+    <Button
+        android:id="@+id/buttonConvert"
+        android:text="@string/buttonOk"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_gravity="fill"
+        android:layout_columnSpan="2"/>
+
+</GridLayout>
