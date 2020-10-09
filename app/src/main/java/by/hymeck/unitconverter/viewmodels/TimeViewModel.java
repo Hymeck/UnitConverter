@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import by.hymeck.unitconverter.logic.domain.mass.MassUnits;
 import by.hymeck.unitconverter.logic.domain.time.*;
 import by.hymeck.unitconverter.logic.domain.time.units.*;
 
@@ -147,5 +148,28 @@ public class TimeViewModel extends ViewModel
         }
 
         return timeMetricUnit;
+    }
+
+    public void swap()
+    {
+        if (fromUnit.getValue() == toUnit.getValue())
+            return;
+
+        swapUnits();
+        swapValues();
+    }
+
+    protected void swapUnits()
+    {
+        TimeUnits temp = toUnit.getValue();
+        toUnit.setValue(fromUnit.getValue());
+        fromUnit.setValue(temp);
+    }
+
+    protected void swapValues()
+    {
+        String temp = to.getValue();
+        to.postValue(from.getValue());
+        from.postValue(temp);
     }
 }

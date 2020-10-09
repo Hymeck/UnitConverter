@@ -8,15 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import by.hymeck.unitconverter.BuildConfig;
 import by.hymeck.unitconverter.R;
-import by.hymeck.unitconverter.fragments.DistanceFragment;
-import by.hymeck.unitconverter.fragments.MassFragment;
-import by.hymeck.unitconverter.fragments.TimeFragment;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentPagerAdapter
 {
 
@@ -33,20 +27,25 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
     @Override
     public Fragment getItem(int position)
     {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         Fragment fragment = null;
 
+        boolean isFull = BuildConfig.FLAVOR.equals("full");
         switch (position)
         {
             case 0:
-                fragment = MassFragment.newInstance();
+                fragment = isFull?
+                        by.hymeck.unitconverter.full.debug.MassFragment.newInstance() :
+                        by.hymeck.unitconverter.fragments.MassFragment.newInstance();
                 break;
             case 1:
-                fragment = DistanceFragment.newInstance();
+                fragment = isFull?
+                        by.hymeck.unitconverter.full.debug.DistanceFragment.newInstance() :
+                        by.hymeck.unitconverter.fragments.DistanceFragment.newInstance();
                 break;
             case 2:
-                fragment = TimeFragment.newInstance();
+                fragment = isFull?
+                        by.hymeck.unitconverter.full.debug.TimeFragment.newInstance() :
+                        by.hymeck.unitconverter.fragments.TimeFragment.newInstance();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + position);

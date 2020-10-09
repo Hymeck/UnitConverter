@@ -140,4 +140,27 @@ public class MassViewModel extends ViewModel
 
         return massMetricUnit;
     }
+
+    public void swap()
+    {
+        if (fromUnit.getValue() == toUnit.getValue())
+            return;
+
+        swapUnits();
+        swapValues();
+    }
+
+    protected void swapUnits()
+    {
+        MassUnits temp = toUnit.getValue();
+        toUnit.setValue(fromUnit.getValue());
+        fromUnit.setValue(temp);
+    }
+
+    protected void swapValues()
+    {
+        String temp = to.getValue();
+        to.postValue(from.getValue());
+        from.postValue(temp);
+    }
 }

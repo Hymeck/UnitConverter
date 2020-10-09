@@ -19,7 +19,7 @@ import by.hymeck.unitconverter.viewmodels.MassViewModel;
 public class MassFragment extends Fragment implements AdapterView.OnItemSelectedListener
 {
 
-    private MassViewModel mViewModel;
+    protected MassViewModel mViewModel;
 
     public static MassFragment newInstance()
     {

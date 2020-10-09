@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import by.hymeck.unitconverter.logic.domain.distance.*;
 import by.hymeck.unitconverter.logic.domain.distance.units.*;
+import by.hymeck.unitconverter.logic.domain.mass.MassUnits;
 
 
 public class DistanceViewModel extends ViewModel
@@ -142,5 +143,28 @@ public class DistanceViewModel extends ViewModel
         }
 
         return distanceMetricUnit;
+    }
+
+    public void swap()
+    {
+        if (fromUnit.getValue() == toUnit.getValue())
+            return;
+
+        swapUnits();
+        swapValues();
+    }
+
+    protected void swapUnits()
+    {
+        DistanceUnits temp = toUnit.getValue();
+        toUnit.setValue(fromUnit.getValue());
+        fromUnit.setValue(temp);
+    }
+
+    protected void swapValues()
+    {
+        String temp = to.getValue();
+        to.postValue(from.getValue());
+        from.postValue(temp);
     }
 }

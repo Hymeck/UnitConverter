@@ -19,7 +19,7 @@ import by.hymeck.unitconverter.viewmodels.TimeViewModel;
 public class TimeFragment extends Fragment implements AdapterView.OnItemSelectedListener
 {
 
-    private TimeViewModel mViewModel;
+    protected TimeViewModel mViewModel;
 
     public static TimeFragment newInstance()
     {

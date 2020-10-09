@@ -19,7 +19,7 @@ import by.hymeck.unitconverter.viewmodels.DistanceViewModel;
 public class DistanceFragment extends Fragment implements AdapterView.OnItemSelectedListener
 {
 
-    private DistanceViewModel mViewModel;
+    protected DistanceViewModel mViewModel;
 
     public static DistanceFragment newInstance()
     {
